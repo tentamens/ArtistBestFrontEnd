@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Artist Best</title>
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/searchArtistCSS.css">
+    <link rel="stylesheet" href="css/votePopUp.css">
+    <script src="./scripts/script.js"></script>
+
+</head>
+
+
+<body>
+
+    <header class="header-main">
+        <h2 class="main-text">Artists Best🎵</h2>
+        <div class="header-sm">
+            <img src="img/icons8-discord-logo-96.png" alt="discord logo">
+        </div>
+    </header>
+
+    <main class="bodyMain">
+        <div id="errorBox">
+            <p class="errorFontHeader">We ran into an error:</p>
+            <div class="solid"></div>
+            <p id="errorFont">This is the error we can into</p>
+
+            <button onclick="generateToken()">
+                <style>
+                    .f {
+                        font-size: 18px;
+                        color: rgb(212, 212, 212);
+                        font-family: sans, sans-serif;
+                    }
+                </style>
+                <p class="f">Generate </p>
+
+            </button>
+        </div>
+        <h1 class="loadingText">Post Malone</h1>
+        <div class="box">
+
+            <div class="songBox">
+                <div class="songBoxBackground">
+                    <p id="song1">Loading........................................</p>
+                </div>
+
+                <button type="button" onclick="search()" id="searchButton">
+                    <img src="./img/link.png" alt="Search icon">
+                </button>
+            </div>
+            <div class="songBox">
+                <div class="songBoxBackground">
+                    <p id="song2">Loading........................................</p>
+                </div>
+
+                <button type="button" onclick="search()" id="searchButton">
+                    <img src="./img/link.png" alt="Search icon">
+                </button>
+            </div>
+            <div class="songBox">
+                <div class="songBoxBackground">
+                    <p id="song3">Loading........................................</p>
+                </div>
+
+                <button type="button" onclick="search()" id="searchButton">
+                    <img src="./img/link.png" alt="Search icon">
+                </button>
+            </div>
+            <div class="songBox">
+                <div class="songBoxBackground">
+                    <p id="song4">Loading........................................</p>
+                </div>
+
+                <button type="button" onclick="search()" id="searchButton">
+                    <img src="./img/link.png" alt="Search icon">
+                </button>
+            </div>
+            <div class="songBox">
+                <div class="songBoxBackground">
+                    <p id="song5">Loading........................................</p>
+                </div>
+
+                <button type="button" onclick="search()" id="searchButton">
+                    <img src="./img/link.png" alt="Search icon">
+                </button>
+            </div>
+            <div class="songBox">
+                <div class="songBoxBackground">
+                    <p id="song6">Loading........................................</p>
+                </div>
+
+                <button type="button" onclick="search()" id="searchButton">
+                    <img src="./img/link.png" alt="Search icon">
+                </button>
+            </div>
+        </div>
+
+        <footer>
+            <div>
+                <button onclick="vote()" type="button" id="voteButton">
+                    <h4>Vote</h4>
+                </button>
+            </div>
+        </footer>
+
+
+    </main>
+
+
+    <div class="votePopup">
+        
+        <h3>Vote their best songs</h3>
+
+        <div class="searchBar">
+            <form class="searchBox" action="">
+                <input type="text" placeholder="Search" name="q" id="searchBox">
+                <button type="button" onclick="search()" id="searchButton">
+                    <img src="./img/icons8-search-100 (1).png" alt="Search icon">
+                </button>
+            </form>
+        </div>
+
+    </div>
+
+
+</body>
+
+
+</html>
