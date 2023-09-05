@@ -101,7 +101,7 @@
 
         <footer>
             <div>
-                <button onclick="vote()" type="button" id="voteButton">
+                <button onclick="votePop()" type="button" id="voteButton">
                     <h4>Vote</h4>
                 </button>
             </div>
@@ -110,19 +110,26 @@
 
     </main>
 
+    <button type="button" id="closePopUpButton" onclick="closePopup()"></button>
 
-    <div class="votePopup">
-        
-        <h3>Vote their best songs</h3>
+    <div id="votePopup">
+
+        <p id="votesLeft">Remaining Vote Left: 12</p>
+
+        <h3 class="h3font">Vote their best songs</h3>
 
         <div class="searchBar">
             <form class="searchBox" action="">
-                <input type="text" placeholder="Search" name="q" id="searchBox">
-                <button type="button" onclick="search()" id="searchButton">
-                    <img src="./img/icons8-search-100 (1).png" alt="Search icon">
+                <input type="text" placeholder="Song Name" name="q" id="searchBox" autocomplete="off">
                 </button>
             </form>
         </div>
+
+        <button type="button" onclick="confirmVote()" class="confirmButton">
+            <h5>Cast Vote</h5>
+        </button>
+
+
 
     </div>
 

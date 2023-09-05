@@ -1,7 +1,8 @@
-.votePopup {
+#votePopup {
+    visibility: hidden;
     position: absolute;
     width: 80%;
-    height: 70%;
+    height: 80%;
     background-color: rgba(0, 0, 0, 0.918);
     top: 50%;
     left: 50%;
@@ -9,69 +10,97 @@
     border-radius: 20px;
     display: flex;
     flex-direction: column;
-    align-items: center;    
+    align-items: center;
+    position: fixed;
 
-    
 }
 
 
 .searchBar {
     min-width: 0;
+    max-height: 5vw;
+    align-items: center;
 }
 
 .searchBox {
-    
+
     width: 100%;
     max-width: 50vw;
     background: #45537d;
-    ;
+
     display: flex;
     align-items: center;
-    border-radius: 40px;
+    border-radius: 154px;
     padding: 10px 20px;
     margin-top: 50px;
-    margin-right: 50px;
+
     min-width: 0;
+    max-height: 4vw;
 }
+
 
 .searchBar input {
     background: transparent;
     flex: 1;
     border: 0;
     outline: none;
-    padding: 24px 20px;
-    font-size: 30px;
+    font-size: 4vw;
     font-family: sans;
     color: #ffff;
     min-width: 0;
-
+    max-height: 5vw;
 }
 
 ::placeholder {
     color: #ecececa1;
 }
 
-.searchBar button img {
-    width: 40px;
-}
 
-.searchBar button {
-    border: 0;
-    border-radius: 50%;
-    width: 70px;
-    height: 70px;
-    background: #313c5cc9;
-    ;
-    cursor: pointer;
-    margin-right: 10px;
-    min-width: 0;
-}
-
-.votePopup h3 {
-    font-size: 50px;
+.h3font {
+    font-size: 4vw;
     margin-top: 50px;
     font-family: sans, sans-serif;
     margin-left: 20px;
+    color: white;
 }
 
 
+.confirmButton {
+    margin-top: 130px;
+    border: none;
+    width: 25vw;
+    height: 10vw;
+    border-radius: 20px;
+    background-color: rgb(20, 26, 37);
+    box-shadow: 5px 5px 2px rgba(0, 0, 0, 0.753);
+    cursor: pointer;
+}
+
+
+.confirmButton h5 {
+    color: white;
+    font-size: 5vw;
+    text-shadow: 5px 5px 2px rgba(0, 0, 0, 0.753);
+}
+
+
+#votesLeft {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    margin-left: 15px;
+    margin-bottom: 15px;
+    font-size: 15px;
+    color: rgb(180, 180, 180);
+    font-family: sans, sans-serif;
+}
+
+#closePopUpButton {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+    background-color: transparent;
+    visibility: hidden;
+}
