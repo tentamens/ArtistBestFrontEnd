@@ -9,6 +9,7 @@ window.onload = async function () {
 
   const token = localStorage.getItem('token');
 
+
   await fetch('http://localhost:8000/api/load/bestSongs', {
     method: 'POST',
     headers: {
@@ -24,39 +25,48 @@ window.onload = async function () {
     .catch(error => console.error(error))
   result = JSON.parse(result)
 
-  if (401 === result) {
-    var errorFont = document.getElementById("errorFont");
-    errorFont.innerHTML = `It seems your Token as expired<br> Please make a new session by opening Artists Best in a new tab or press below button to generate a new token`;
-    var errorBox = document.getElementById("errorBox");
-    errorBox.style.visibility = "visible";
-    return
-  }
+  if (catchExpiredTokenError(result) === true) { return }
 
+  console.log(result)
+
+  var songsVotedOn = 0
   for (var i = 0; i < result.length; i++) {
     i = parseInt(i);
-    document.getElementById(`song${(i + 1)}`).innerHTML = "New text";
+    songsVotedOn++
+    document.getElementById(`song${(i + 1)}`).innerHTML = result[i][1];
+
+    var button = document.getElementById(`searchButton${i + 1}`);
+
+    var output = result[i][3]
+    button.onclick = function () {
+      window.location.href = output;
+      console.log(output)
+    };
+
   }
 
+
+  for (var i = songsVotedOn; i < 6; i++) {
+    i = parseInt(i);
+    document.getElementById(`song${(i + 1)}`).innerHTML = "No Song voted on";
+  }
 
 
 };
 
-// call the localhost and generate a new token aswell as save to the window
-
 async function generateToken() {
-  const token = await fetch('http://localhost:8000/api/get/token', {
-    method: 'POST',
+  var token = null
+  await fetch('http://localhost:8000/api/get/token', {
+    method: 'GET',
     headers: {
       'Content-Type': 'application/json'
     }
   })
     .then(response => response.json())
-    .then(data => data)
+    .then(data => token = data)
     .catch(error => console.error(error))
 
-  console.log(token)
   localStorage.setItem('token', token);
-  window.location.reload();
 
 }
 
@@ -77,12 +87,11 @@ async function confirmVote() {
   let result = null
   const searchTerm = document.getElementById("searchBox").value;
 
-  if (searchTerm === ''){
-    return
-  };
-
+  if (searchTerm === '')
+    return;
 
   const token = localStorage.getItem('token');
+
 
 
   await fetch('http://localhost:8000/api/post/vote', {
@@ -101,15 +110,21 @@ async function confirmVote() {
     .catch(error => console.error(error))
 
   result = JSON.parse(result)
-  console.log(result)
 
+  if (catchExpiredTokenError(result) === true)
+    return;
+
+};
+
+
+
+function catchExpiredTokenError(result) {
   if (401 === result) {
     var errorFont = document.getElementById("errorFont");
     errorFont.innerHTML = `It seems your Token as expired<br> Please make a new session by opening Artists Best in a new tab or press below button to generate a new token`;
     var errorBox = document.getElementById("errorBox");
     errorBox.style.visibility = "visible";
-    return
+    return true
   }
-
+  return false
 };
-
