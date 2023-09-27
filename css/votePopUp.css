@@ -20,9 +20,10 @@
     min-width: 0;
     max-height: 5vw;
     align-items: center;
+    display: flex;
 }
 
-.searchBox {
+.searchbox {
 
     width: 100%;
     max-width: 50vw;
@@ -35,29 +36,29 @@
     margin-top: 50px;
 
     min-width: 0;
-    max-height: 4vw;
+    max-height: 6vw;
 }
 
 
-.searchBar input {
+.searchbar input {
     background: transparent;
     flex: 1;
     border: 0;
     outline: none;
-    font-size: 4vw;
+    font-size: 6vw;
     font-family: sans;
     color: #ffff;
     min-width: 0;
-    max-height: 5vw;
+    max-height: 8vw;
 }
 
 ::placeholder {
-    color: #ecececa1;
+    color: #ffffffea;
 }
 
 
 .h3font {
-    font-size: 4vw;
+    font-size: 5vw;
     margin-top: 50px;
     font-family: sans, sans-serif;
     margin-left: 20px;
@@ -96,7 +97,7 @@
 }
 
 #closePopUpButton {
-    position: absolute;
+    position: fixed;
     top: 0;
     width: 100%;
     height: 100%;

@@ -10,7 +10,7 @@ getToken()
 
 async function getToken() {
 
-    const url = 'http://localhost:8000/api/get/token';
+    const url = 'http://app.artistsbest.io/api/get/token';
     await fetch(url, {
         method: 'GET',
     })
@@ -36,7 +36,7 @@ async function search() {
     localStorage.setItem('token', token);
 
 
-    await fetch('http://localhost:8000/api/load/searchArtist', {
+    await fetch('http://app.artistsbest.io/api/load/searchArtist', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'

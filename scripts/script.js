@@ -2,15 +2,22 @@ var artistName = null;
 
 
 window.onload = async function () {
+
+
+
+
   const urlParams = new URLSearchParams(window.location.search);
   const searchValue = urlParams.get('search');
   artistName = searchValue;
+  console.log(searchValue)
+
+  document.getElementById("loadingText").innerHTML = searchValue;
   let result;
 
   const token = localStorage.getItem('token');
 
 
-  await fetch('http://localhost:8000/api/load/bestSongs', {
+  await fetch('http://app.artistsbest.io/api/load/bestSongs', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'
@@ -25,7 +32,10 @@ window.onload = async function () {
     .catch(error => console.error(error))
   result = JSON.parse(result)
 
-  if (catchExpiredTokenError(result) === true) { return }
+  if (catchExpiredTokenError(result) === true) {
+    window.location.reload()
+    return
+  }
 
   console.log(result)
 
@@ -56,7 +66,7 @@ window.onload = async function () {
 
 async function generateToken() {
   var token = null
-  await fetch('http://localhost:8000/api/get/token', {
+  fetch('http://app.artistsbest.io/api/get/token', {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json'
@@ -120,10 +130,7 @@ async function confirmVote() {
 
 function catchExpiredTokenError(result) {
   if (401 === result) {
-    var errorFont = document.getElementById("errorFont");
-    errorFont.innerHTML = `It seems your Token as expired<br> Please make a new session by opening Artists Best in a new tab or press below button to generate a new token`;
-    var errorBox = document.getElementById("errorBox");
-    errorBox.style.visibility = "visible";
+    generateToken();
     return true
   }
   return false

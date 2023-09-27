@@ -11,13 +11,13 @@ main {
 }
 
 .artistsSongSearch {
-    font-size: 50px;
+    font-size: 5vw;
     color: white;
     text-align: center;
     flex: 1;
     font-family: sans, sans-serif;
     align-self: center;
-    padding: 40px 50px 0px 0px;
+    padding: 30px 0px 0px 0px;
 }
 
 .searchBar {
@@ -26,45 +26,52 @@ main {
     justify-content: center;
 }
 
-.searchBox {
-    width: 100%;
-    max-width: 700px;
-    background: #45537d;;
-    display: flex;
-    align-items: center;
-    border-radius: 40px;
-    padding: 10px 20px;
-    margin-top: 100px;
-    margin-right: 50px;
-}
-
-.searchBar input {
-    background: transparent;
-    flex: 1;
-    border: 0;
-    outline: none;
-    padding: 24px 20px;
-    font-size: 30px;
-    font-family: sans;
-    color: #ffff;
-    
-}
-
-::placeholder {
-    color: #ecececa1;
-}
-
 .searchBar button img {
-    width: 40px;
+    width: calc(18px + 2.5vw);
 }
 
 .searchBar button {
     border: 0;
     border-radius: 50%;
-    width: 70px;
-    height: 70px;
-    background: #313c5cc9;;
+    width: calc(40px + 3vw);
+    height: calc(40px + 3vw); 
+    background: #313c5cc9;
     cursor: pointer;
-    margin-right: 10px;
+    align-self: center;
+}
+
+
+.searchBox {
+
+    width: 100%;
+    max-width: 70vw;
+    background: #45537d;
+
+    display: flex;
+    align-items: center;
+    border-radius: 154px;
+    padding: 10px 1vw;
+    margin-top: 50px;
+
+    min-width: 0;
+    max-height: 10vw;
+}
+
+
+.searchBox input {
+    background: transparent;
+    flex: 1;
+    border: 0;
+    outline: none;
+    font-size: 4vw;
+    font-family: sans;
+    color: #ffff;
+    min-width: 0;
+    max-height: 5vw;
+}
+
+
+::placeholder{
+    color: white;
 }
 
