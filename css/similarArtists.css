@@ -1,0 +1,74 @@
+
+.similarArtistsBox {
+    box-sizing: content-box;
+    display: flex;
+    background-color: #222a3c;
+    height: 20%;
+    width: 65%;
+    margin-top: 70px;
+    border-radius: 50px;
+    justify-content: space-evenly;
+    flex-direction: row-reverse;
+    flex-wrap: wrap;
+    box-shadow: 6px 6px 5px black;
+    padding-left: 15px;
+    padding-bottom: 20px;
+    margin-bottom: 30px;
+    padding-top: 30px;
+}
+
+.similarBox {
+    height: 130px;
+    width: 350px;
+    background-color: rgb(24, 29, 39);
+    border-radius: 15px;
+    margin-right: 18px;
+    margin-top: 15px;
+    box-shadow: 5px 5px 2px rgba(0, 0, 0, 0.753);
+    display: flex;
+    align-items: center;
+    flex-grow: 1;
+    min-width: 0;
+}
+
+#similar1 {
+    font-family: sans;
+    color: rgb(202, 202, 202);
+    font-size: 30px;
+    margin-left: 6px;
+    text-align: center;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+#similar2 {
+    font-family: sans;
+    color: rgb(202, 202, 202);
+    font-size: 30px;
+    margin-left: 6px;
+    text-align: center;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+#similar3 {
+    font-family: sans;
+    color: rgb(202, 202, 202);
+    font-size: 30px;
+    margin-left: 6px;
+    text-align: center;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+#similarArtistText {
+    font-family: sans, sans-serif;
+    color: white;
+    font-size: 35px;
+    position: absolute;
+    margin-top: 70px;
+}
+

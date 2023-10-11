@@ -1,5 +1,5 @@
 var artistName = null;
-
+var voteState = "Song"
 
 window.onload = async function () {
 
@@ -17,7 +17,7 @@ window.onload = async function () {
   const token = localStorage.getItem('token');
 
 
-  await fetch('http://app.artistsbest.io/api/load/bestSongs', {
+  await fetch('http://localhost:8000/api/load/bestSongs', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'
@@ -30,6 +30,7 @@ window.onload = async function () {
     .then(response => response.json())
     .then(data => result = data)
     .catch(error => console.error(error))
+  console.log(result)
   result = JSON.parse(result)
 
   if (catchExpiredTokenError(result) === true) {
@@ -40,18 +41,19 @@ window.onload = async function () {
   console.log(result)
 
   var songsVotedOn = 0
-  for (var i = 0; i < result.length; i++) {
+  for (var i = 0; i < result["songs"].length; i++) {
     i = parseInt(i);
     songsVotedOn++
-    document.getElementById(`song${(i + 1)}`).innerHTML = result[i][1];
+    document.getElementById(`song${(i + 1)}`).innerHTML = result["songs"][i][1];
 
     var button = document.getElementById(`searchButton${i + 1}`);
 
-    var output = result[i][3]
-    button.onclick = function () {
-      window.location.href = output;
-      console.log(output)
-    };
+    (function () {
+      var output = result["songs"][i][2];
+      button.onclick = function () {
+        window.location.href = output;
+      };
+    })();
 
   }
 
@@ -61,12 +63,17 @@ window.onload = async function () {
     document.getElementById(`song${(i + 1)}`).innerHTML = "No Song voted on";
   }
 
-
+  var button = document.getElementById("playlistButton");
+  (function () {
+    button.onclick = function () {
+      window.location.href = `https://open.spotify.com/playlist/${result["playlist"]}`
+    };
+  })();
 };
 
 async function generateToken() {
   var token = null
-  fetch('http://app.artistsbest.io/api/get/token', {
+  fetch('http://localhost:8000/api/get/token', {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json'
@@ -95,7 +102,7 @@ function closePopup() {
 
 async function confirmVote() {
   let result = null
-  const searchTerm = document.getElementById("searchBox").value;
+  const searchTerm = document.getElementById("searchbox").value;
 
   if (searchTerm === '')
     return;
@@ -127,7 +134,6 @@ async function confirmVote() {
 };
 
 
-
 function catchExpiredTokenError(result) {
   if (401 === result) {
     generateToken();
@@ -135,3 +141,20 @@ function catchExpiredTokenError(result) {
   }
   return false
 };
+
+
+function changeVoteState() {
+  if (voteState === "Song") {
+    voteState = "Artist"
+    document.getElementById("voteButtonChangerText").innerHTML = "Artist Vote"
+    document.getElementById("searchbox").placeholder = "Similar Artist"
+    document.getElementById("h3font").innerHTML = "Vote on Similar sounding Artist"
+    return
+  }
+  voteState = "Song"
+  document.getElementById("voteButtonChangerText").innerHTML = "Similar Artist"
+  document.getElementById("searchbox").placeholder = "Song Name"
+  document.getElementById("h3font").innerHTML = "Vote on their Best Songs"
+  return
+
+}
