@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="css/searchArtistCSS.css">
     <link rel="stylesheet" href="css/votePopUp.css">
     <link rel="stylesheet" href="css/similarArtists.css">
+    <link rel="stylesheet" href="css/searchedArtistHeader.css">
     <script src="./scripts/script.js"></script>
 
 </head>
@@ -18,11 +19,17 @@
 
     <header class="header-main">
         <h2 class="main-text">Artists Best🎵</h2>
-        <div class="header-sm">
-            <img src="img/icons8-discord-logo-96.png" alt="discord logo">
-        </div>
     </header>
-
+    <div class="searchBar">
+        <form class="searchBox" action="">
+            <input type="text" placeholder="Search" name="q" id="searchBox" autocomplete="off">
+            <button type="button" onclick="search()" id="searchButton">
+                <img src="./img/icons8-search-100 (1).png" alt="Search icon">
+            </button>
+    </div>
+    <div class="header-sm">
+        <img src="img/icons8-discord-logo-96.png" alt="discord logo">
+    </div>
     <main class="bodyMain">
         <div id="errorBox">
             <p class="errorFontHeader">We ran into an error:</p>
@@ -46,15 +53,6 @@
 
             <div class="songBox">
                 <div class="songBoxBackground">
-                    <p id="song2">Loading........................................</p>
-                </div>
-
-                <button type="button" onclick="" id="searchButton2">
-                    <img src="./img/link.png" alt="Search icon">
-                </button>
-            </div>
-            <div class="songBox">
-                <div class="songBoxBackground">
                     <p id="song1">Loading........................................</p>
                 </div>
 
@@ -64,10 +62,10 @@
             </div>
             <div class="songBox">
                 <div class="songBoxBackground">
-                    <p id="song4">Loading........................................</p>
+                    <p id="song2">Loading........................................</p>
                 </div>
 
-                <button type="button" onclick="" id="searchButton4">
+                <button type="button" onclick="" id="searchButton2">
                     <img src="./img/link.png" alt="Search icon">
                 </button>
             </div>
@@ -82,10 +80,10 @@
             </div>
             <div class="songBox">
                 <div class="songBoxBackground">
-                    <p id="song6">Loading........................................</p>
+                    <p id="song4">Loading........................................</p>
                 </div>
 
-                <button type="button" onclick="" id="searchButton6">
+                <button type="button" onclick="" id="searchButton4">
                     <img src="./img/link.png" alt="Search icon">
                 </button>
             </div>
@@ -98,9 +96,18 @@
                     <img src="./img/link.png" alt="Search icon">
                 </button>
             </div>
+            <div class="songBox">
+                <div class="songBoxBackground">
+                    <p id="song6">Loading........................................</p>
+                </div>
+
+                <button type="button" onclick="" id="searchButton6">
+                    <img src="./img/link.png" alt="Search icon">
+                </button>
+            </div>
         </div>
 
-        <footer>
+        <div>
             <div id="footerButtons">
                 <button onclick="votePop()" type="button" id="voteButton">
                     <h4>Vote</h4>
@@ -119,7 +126,7 @@
                 </div>
             </div>
 
-        </footer>
+        </div>
 
 
     </main>
@@ -165,19 +172,19 @@
 
             <div class="songBox">
                 <div class="songBoxBackground">
-                    <p id="similar2">Loading........................................</p>
+                    <p id="similar1">Loading........................................</p>
                 </div>
 
-                <button type="button" onclick="" id="searchButton2">
+                <button type="button" onclick="" id="similarButton1">
                     <img src="./img/link.png" alt="Search icon">
                 </button>
             </div>
             <div class="songBox">
                 <div class="songBoxBackground">
-                    <p id="similar1">Loading........................................</p>
+                    <p id="similar2">Loading........................................</p>
                 </div>
 
-                <button type="button" onclick="" id="searchButton1">
+                <button type="button" onclick="" id="similarButton2">
                     <img src="./img/link.png" alt="Search icon">
                 </button>
             </div>
@@ -186,7 +193,7 @@
                     <p id="similar3">Loading........................................</p>
                 </div>
 
-                <button type="button" onclick="" id="searchButton3">
+                <button type="button" onclick="" id="similarButton3">
                     <img src="./img/link.png" alt="Search icon">
                 </button>
             </div>
@@ -194,6 +201,10 @@
 
     </div>
 
+
+    <footer>
+        <p class="policyLink"><a href="/policy.html">Policy</a></p>
+    </footer>
 
 </body>
 

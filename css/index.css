@@ -75,3 +75,9 @@ main {
     color: white;
 }
 
+p {
+    font-family: sans, sans-serif;
+    font-size: 30px;
+    margin-left: 20px;
+    margin-bottom: 10px;
+}

@@ -10,35 +10,15 @@ getToken()
 
 async function getToken() {
 
-    const url = 'http://localhost:8000/api/get/token';
+    const url = 'https://app.artistsbest.io/api/get/token';
     await fetch(url, {
         method: 'GET',
     })
         .then(response => response.json())
         .then(data => token = data)
         .catch(error => console.error(error));
-
-    await fetch('http://localhost:8000/api/load/bestSongs', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-            artistName: `NF`,
-            token: token
-        })
-        })
-        .then(response => response.json())
-        .then(data => result = data)
-        .catch(error => console.error(error))
-        result = JSON.parse(result)
+    localStorage.setItem('token', token);
 };
-
-console.log(token)
-
-
-
-
 
 
 async function search() {
@@ -46,10 +26,10 @@ async function search() {
     var searchTerm = searchBox.value;
     let result = null
     console.log("hello world")
-    localStorage.setItem('token', token);
 
 
-    await fetch('http://localhost:8000/api/load/searchArtist', {
+
+    await fetch('https://app.artistsbest.io/api/load/searchArtist', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
