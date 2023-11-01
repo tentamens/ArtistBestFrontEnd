@@ -16,38 +16,30 @@
 
 
 <body>
-
+    <div id="errorBox">
+        <p class="errorFontHeader">An error has occurred:</p>
+        <div class="solid"></div>
+        <p id="errorFont">Token expired please refresh your page  </p>
+        <p id="IfThisContiues">if this continues make a support ticket in discord</p>
+    </div>
     <header class="header-main">
         <h2 class="main-text">Artists Best🎵</h2>
     </header>
-    <div class="searchBar">
-        <form class="searchBox" action="">
-            <input type="text" placeholder="Search" name="q" id="searchBox" autocomplete="off">
+
+    <div id="searchBarTop">
+        <form id="searchBoxTop" action="">
+            <input type="text" placeholder="Search" name="q" id="searchBoxTopTXT" autocomplete="off">
             <button type="button" onclick="search()" id="searchButton">
                 <img src="./img/icons8-search-100 (1).png" alt="Search icon">
             </button>
+        </form>
     </div>
+
+
     <div class="header-sm">
         <img src="img/icons8-discord-logo-96.png" alt="discord logo">
     </div>
     <main class="bodyMain">
-        <div id="errorBox">
-            <p class="errorFontHeader">We ran into an error:</p>
-            <div class="solid"></div>
-            <p id="errorFont">This is the error we can into</p>
-
-            <button onclick="generateToken()">
-                <style>
-                    .f {
-                        font-size: 18px;
-                        color: rgb(212, 212, 212);
-                        font-family: sans, sans-serif;
-                    }
-                </style>
-                <p class="f">Generate </p>
-
-            </button>
-        </div>
         <h1 id="loadingText"></h1>
         <div class="box">
 
@@ -135,23 +127,22 @@
 
     <div id="votePopup">
 
-        <p id="votesLeft">Remaining Vote Left: 12</p>
 
         <h3 id="h3font">Vote on their best songs</h3>
 
 
 
-        <div class="searchbar">
-            <div class="container">
-                <div id="voteChanger">
+        <div class="searchbarVote">
+            <div class="containerVote">
+                <div id="voteChangerVote">
                     <button id="voteChangerButton" onclick="changeVoteState()">
                         <p id="voteButtonChangerText">Similar Artist</p>
                     </button>
                 </div>
 
-                <form class="searchbox" action="">
+                <form class="searchboxVote" action="">
 
-                    <input type="text" placeholder="Song Name" name="q" id="searchbox" autocomplete="off">
+                    <input type="text" placeholder="Song Name" name="q" id="searchboxVote" autocomplete="off">
                     </button>
                 </form>
             </div>
@@ -203,7 +194,7 @@
 
 
     <footer>
-        <p class="policyLink"><a href="/policy.html">Policy</a></p>
+        <p class="policyLink"><a href="/policy">Policy</a></p>
     </footer>
 
 </body>

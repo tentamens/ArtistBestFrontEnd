@@ -1,5 +1,5 @@
 
-.searchBar {
+#searchBarTop {
     margin-top: 20px;
     align-self: center;
     display: flex;
@@ -7,22 +7,22 @@
     justify-content: center;
 }
 
-.searchBar button img {
-    width: calc(18px + 1.5vw);
+#searchBarTop button img {
+    width: calc(25px + 1vw);
 }
 
-.searchBar button {
+#searchBarTop button {
     border: 0;
     border-radius: 50%;
-    width: calc(40px + 2vw);
-    height: calc(40px + 2vw); 
+    width: calc(40px + 1.5vw);
+    height: calc(40px + 1.5vw); 
     background: #313c5cc9;
     cursor: pointer;
     align-self: center;
 }
 
 
-.searchBox {
+#searchBoxTop {
 
     width: 100%;
     background: #45537d;
@@ -36,7 +36,7 @@
 }
 
 
-.searchBox input {
+#searchBoxTop input {
     background: transparent;
     flex: 1;
     border: 0;

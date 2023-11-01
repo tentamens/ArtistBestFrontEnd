@@ -2,6 +2,8 @@ const searchBar = document.getElementById('searchBar');
 let searchButton = document.getElementById('searchButton');
 var searchedUpArtist = null;
 
+let url = "http://localhost:8000"
+
 
 var token = null
 
@@ -10,14 +12,15 @@ getToken()
 
 async function getToken() {
 
-    const url = 'https://app.artistsbest.io/api/get/token';
-    await fetch(url, {
+    const Theurl = `${url}/api/get/token`;
+    await fetch(Theurl, {
         method: 'GET',
     })
         .then(response => response.json())
         .then(data => token = data)
         .catch(error => console.error(error));
     localStorage.setItem('token', token);
+    localStorage.setItem('expireTime', new Date().getTime() / 1000 + 3600)
 };
 
 
@@ -29,7 +32,7 @@ async function search() {
 
 
 
-    await fetch('https://app.artistsbest.io/api/load/searchArtist', {
+    await fetch(`${url}/api/load/searchArtist`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'

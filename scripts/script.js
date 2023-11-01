@@ -1,5 +1,8 @@
+const url = "http://localhost:8000"
+
 var artistName = null;
 var voteState = "Song"
+var expireTime = null;
 
 window.onload = loadPage;
 
@@ -13,16 +16,17 @@ async function loadPage() {
   let result;
 
   const token = localStorage.getItem('token');
+  const expireTime = localStorage.getItem('expireTime');
 
 
-  await fetch('https://app.artistsbest.io/api/load/bestSongs', {
+  await fetch(`${url}/api/load/bestSongs`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'
     },
     body: JSON.stringify({
-      artistName: `${searchValue}`,
-      token: token
+      "artistName": artistName,
+      "token": token
     })
   })
     .then(response => response.json())
@@ -32,8 +36,6 @@ async function loadPage() {
 
   if (catchExpiredTokenError(result) === true) {
     generateToken()
-    console.log("hello world")
-    window.location.reload()
     return
   }
 
@@ -75,12 +77,12 @@ async function loadPage() {
 
 
 function updateSimiliarArtists(similartyVotes) {
-  votedOn = 0
+  let votedon = 0
   for (var i = 0; i < similartyVotes.length; i++) {
     votedon++
     i = parseInt(i);
     document.getElementById(`similar${(i + 1)}`).innerHTML = similartyVotes[i][0];
-    
+
     var button = document.getElementById(`similarButton${i + 1}`);
 
     (function () {
@@ -90,7 +92,7 @@ function updateSimiliarArtists(similartyVotes) {
       };
     })();
   }
-  for (var i = votedOn; i < 3; i++) {
+  for (var i = votedon; i < 3; i++) {
     i = parseInt(i);
     document.getElementById(`similar${(i + 1)}`).innerHTML = "No Artist voted on";
   }
@@ -98,16 +100,19 @@ function updateSimiliarArtists(similartyVotes) {
 
 async function generateToken() {
   let token = null;
-  const url = 'https://app.artistsbest.io/api/get/token';
-  await fetch(url, {
-      method: 'GET',
+  const Theurl = `${url}/api/get/token`;
+  await fetch(Theurl, {
+    method: 'GET',
   })
-      .then(response => response.json())
-      .then(data => token = data)
-      .catch(error => console.error(error));
+    .then(response => response.json())
+    .then(data => token = data)
+    .catch(error => console.error(error));
   localStorage.setItem('token', token);
-  console.log(token)
+  expireTime = new Date().getTime() / 1000 + 3600;
+  localStorage.setItem('expireTime', expireTime)
+  return;
 };
+
 
 
 function votePop() {
@@ -123,8 +128,11 @@ function closePopup() {
 
 
 async function confirmVote() {
+  if (expireTime < new Date().getTime() / 1000) {
+    generateToken();
+  };
   let result = null
-  const searchTerm = document.getElementById("searchbox").value;
+  const searchTerm = document.getElementById("searchboxVote").value;
   const token = localStorage.getItem('token');
 
 
@@ -145,7 +153,7 @@ async function confirmVote() {
 
 
 async function voteOnArtsist(searchTerm, token) {
-  await fetch('https://app.artistsbest.io/api/post/vote/similarity', {
+  const respone = await fetch(`${url}/api/post/vote/similarity`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'
@@ -158,32 +166,43 @@ async function voteOnArtsist(searchTerm, token) {
   })
 
 
+
+
 }
 
 
 
 async function voteOnSong(searchTerm, token) {
+  let result = null;
+  console.log("hello");
+  
+  try {
+    const response = await fetch(`${url}/api/post/vote`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        "songName": `${searchTerm}`,
+        "artistName": artistName,
+        "token": token
+      })
+    });
 
-  await fetch('https://app.artistsbest.io/api/post/vote', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify({
-      songName: `${searchTerm}`,
-      artistName: artistName,
-      token: token
-    })
-  })
-    .then(response => response.json())
-    .then(data => result = data)
-    .catch(error => console.error(error))
+    if (!response.ok) {
+      document.getElementById("errorBox").style.visibility = "visible";
+    }
 
-  result = JSON.parse(result)
+    result = await response.json();
 
-  if (catchExpiredTokenError(result) === true)
-    return;
+    if (catchExpiredTokenError(result) === true) {
+      return;
+    }
+  } catch (error) {
+    console.error(error);
+  }
 }
+
 
 
 
@@ -214,29 +233,33 @@ function changeVoteState() {
 
 
 async function search() {
-  var searchBox = document.getElementById("searchBox");
+  if (expireTime < new Date().getTime() / 1000) {
+    generateToken();
+  }
+
+  var searchBox = document.getElementById("searchBoxTopTXT");
   var searchTerm = searchBox.value;
   const token = localStorage.getItem('token');
-  if (searchTerm === ''){
+  if (searchTerm === '') {
     return;
   }
-  
+
   let result = null
 
 
-  await fetch('https://app.artistsbest.io/api/load/searchArtist', {
-      method: 'POST',
-      headers: {
-          'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-          artistName: `${searchTerm}`,
-          token: token
-      })
+  await fetch(`${url}/api/load/searchArtist`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      artistName: `${searchTerm}`,
+      token: token
+    })
   })
-      .then(response => response.json())
-      .then(data => result = data)
-      .catch(error => console.error(error))
+    .then(response => response.json())
+    .then(data => result = data)
+    .catch(error => console.error(error))
 
 
   let searchQuery = result;
