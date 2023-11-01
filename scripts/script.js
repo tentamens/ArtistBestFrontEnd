@@ -6,7 +6,16 @@ var expireTime = null;
 
 window.onload = loadPage;
 
+
+
 async function loadPage() {
+  const expireTime = localStorage.getItem('expireTime');
+  if (expireTime < new Date().getTime() / 1000) {
+    console.log("the token expired so it should be getting regenerated")
+    await generateToken();
+    await loadPage()
+    return
+  };
 
   const urlParams = new URLSearchParams(window.location.search);
   const searchValue = urlParams.get('search');
@@ -16,7 +25,7 @@ async function loadPage() {
   let result;
 
   const token = localStorage.getItem('token');
-  const expireTime = localStorage.getItem('expireTime');
+  
 
 
   await fetch(`${url}/api/load/bestSongs`, {

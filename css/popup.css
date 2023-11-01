@@ -1,0 +1,29 @@
+.iframe1  {
+    position: absolute;
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+  }
+  
+  .songBoxBackground1:hover + .iframe1 {
+    opacity: 1;
+  }
+
+.songBoxBackground1 div {
+    position: absolute;
+}
+
+
+.songBoxBackground1 {
+    height: 100px;
+    width: 300px;
+    background-color: rgb(20, 26, 37);
+    border-radius: 15px;
+    margin-left: 15px;
+    margin-right: 5px;
+    display: flex;
+    align-items: center;
+    flex-grow: 1;
+    min-width: 0;
+}
+
+
