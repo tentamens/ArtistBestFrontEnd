@@ -36,6 +36,8 @@ async function search() {
     await search()
     return
   };
+  
+
 
   await fetch(`${url}/api/load/searchArtist`, {
     method: "POST",
