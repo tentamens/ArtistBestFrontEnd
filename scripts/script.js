@@ -4,11 +4,12 @@ var artistName = null;
 var voteState = "Song";
 var expireTime = null;
 
-window.onload = loadPage;
+window.onload = loadPage();
 
 
 
 async function loadPage() {
+  
   const expireTime = localStorage.getItem("expireTime");
   if (expireTime < new Date().getTime() / 1000) {
     console.log("the token expired so it should be getting regenerated");
@@ -18,9 +19,10 @@ async function loadPage() {
   }
 
   const urlParams = new URLSearchParams(window.location.search);
-  const searchValue = urlParams.get("search");
+  let searchValue = urlParams.get("search");
   artistName = searchValue;
-
+  console.log(artistName)
+  return
   document.getElementById("loadingText").innerHTML = searchValue;
   let result;
 
@@ -213,6 +215,8 @@ function changeVoteState() {
 }
 
 async function search() {
+  console.log("hello world")
+  return
   if (expireTime < new Date().getTime() / 1000) {
     generateToken();
   }

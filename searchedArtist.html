@@ -36,10 +36,10 @@
         <div id="googleSignInButton">
             <div id="g-id-signin" data-type="standard"></div>
         </div>
-        <form id="searchBoxTop" action="">
+        <form id="searchBoxTop" onsubmit="search()">
             
-            <input type="text" placeholder="Search" name="q" id="searchBoxTopTXT" autocomplete="off">
-            <button type="button" onclick="search()" id="searchButton">
+            <input type="text" placeholder="Search" id="searchBoxTopTXT" autocomplete="off">
+            <button type="submit"  id="searchButton">
                 <img src="./img/icons8-search-100 (1).png" alt="Search icon">
             </button>
         </form>
