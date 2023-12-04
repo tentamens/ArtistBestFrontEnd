@@ -1,0 +1,44 @@
+.popupBox {
+    position: fixed;
+    top: -200px;
+    left: 0;
+    right: 0;
+    margin: auto;
+    width: 30vw;
+    height: 150px;
+    background-color: #181f2b;
+    display: flex;
+    flex-direction: column;
+    align-items: top;
+    border-radius: 15px;
+    outline: 0.5rex;
+    outline-color: rgb(8, 8, 8);
+    outline-style: solid;
+    box-shadow: 4px 4px 2.5px;
+    white-space: normal;
+  }
+
+.popupBox.show-error{
+  top: 20px;
+  transition: top 0.8s ease 0s;
+}
+
+.popupBox.hide-error{
+  top: -200px;
+  transition: top 1s ease 0s;
+}
+
+.popUpBoxHeader {
+    text-align: center;
+    color: rgb(230, 230, 230);
+    font-size: 1.3vw;
+    font-family: sans, sans-serif;
+    margin-top: 10px;
+}
+.popUpBoxMain {
+  text-align: center;
+  color: rgb(230, 230, 230);
+  margin-top: 25px;
+  font-size: 1.1vw;
+  font-family: sans, sans-serif;
+}

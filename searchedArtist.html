@@ -10,6 +10,8 @@
     <link rel="stylesheet" href="css/searchedArtistHeader.css">
     <link rel="stylesheet" href="css/popup.css">
     <link rel="stylesheet" href="css/googleSigninButton.css">
+    <link rel="stylesheet" href="css/errorBox.css">
+    <script src="./scripts/errorPopups.js"></script>
     <script src="./scripts/script.js"></script>
     <script src="https://accounts.google.com/gsi/client" async defer></script>
     <script src="./scripts/googleSignIn.js"></script>
@@ -22,7 +24,6 @@
 
 
     <div id="errorBox">
-        
         <p class="errorFontHeader">An error has occurred:</p>
         <div class="solid"></div>
         <p id="errorFont">Token expired please refresh your page </p>
@@ -36,7 +37,7 @@
         <div id="googleSignInButton">
             <div id="g-id-signin" data-type="standard"></div>
         </div>
-        <form id="searchBoxTop" onsubmit="search()">
+        <form id="searchBoxTop" onsubmit="event.preventDefault(); search()">
             
             <input type="text" placeholder="Search" id="searchBoxTopTXT" autocomplete="off">
             <button type="submit"  id="searchButton">
@@ -50,7 +51,7 @@
         <img src="img/icons8-discord-logo-96.png" alt="discord logo">
     </div>
     <main class="bodyMain">
-        <h1 id="loadingText"></h1>
+        <h1 id="loadingText">Loading</h1>
         <div class="box">
             
             <div class="songBox">
@@ -200,11 +201,20 @@
         </div>
 
     </div>
-
+    
+    
+    <div class="popupBox">
+        <p class="popUpBoxHeader"> Oh no! <br>Looks like Login in failed😟</p>
+        <p class="popUpBoxMain">Sign in if you have not already.<br>
+            If this continues please contact support in the discord</p>
+    </div>
+    
 
     <footer>
         <p class="policyLink"><a href="/policy">Policy</a></p>
     </footer>
+
+    
 
 </body>
 

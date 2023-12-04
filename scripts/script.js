@@ -4,12 +4,12 @@ var artistName = null;
 var voteState = "Song";
 var expireTime = null;
 
-window.onload = loadPage();
+addEventListener("DOMContentLoaded", (event) => {loadPage()});
 
 
 
 async function loadPage() {
-  
+
   const expireTime = localStorage.getItem("expireTime");
   if (expireTime < new Date().getTime() / 1000) {
     console.log("the token expired so it should be getting regenerated");
@@ -21,8 +21,7 @@ async function loadPage() {
   const urlParams = new URLSearchParams(window.location.search);
   let searchValue = urlParams.get("search");
   artistName = searchValue;
-  console.log(artistName)
-  return
+  console.log(searchValue);
   document.getElementById("loadingText").innerHTML = searchValue;
   let result;
 
@@ -42,7 +41,9 @@ async function loadPage() {
     .then((data) => (result = data))
     .catch((error) => console.error(error));
   result = JSON.parse(result);
-
+  
+  
+  
   if (catchExpiredTokenError(result) === true) {
     generateToken();
     return;
@@ -128,6 +129,11 @@ function closePopup() {
 }
 
 async function confirmVote() {
+  if (localStorage.getItem("uuid") == null){
+    noUUIDPopup();
+    return;
+  }
+  return
   if (expireTime < new Date().getTime() / 1000) {
     generateToken();
   }
@@ -161,7 +167,6 @@ async function voteOnArtsist(searchTerm, token) {
 
 async function voteOnSong(searchTerm, token) {
   let result = null;
-  console.log("hello");
 
   try {
     const response = await fetch(`${url}/api/post/vote`, {
@@ -215,8 +220,6 @@ function changeVoteState() {
 }
 
 async function search() {
-  console.log("hello world")
-  return
   if (expireTime < new Date().getTime() / 1000) {
     generateToken();
   }
@@ -243,7 +246,7 @@ async function search() {
     .then((response) => response.json())
     .then((data) => (result = data))
     .catch((error) => console.error(error));
-
+  console.log(result)
   let searchQuery = result;
 
   history.pushState(null, "", "?search=" + encodeURIComponent(searchQuery));

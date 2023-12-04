@@ -30,7 +30,7 @@
 
         </div>
         <div class="searchBar">
-            <form class="searchBox" action="">
+            <form class="searchBox" onsubmit="event.preventDefault(); search()">
                 <input type="text" placeholder="Search" id="searchBox" autocomplete="off" onkeydown="if(event.keyCode==13) {event.preventDefault(); search();}">
               <button type="button" onclick="search()" id="searchButton">
                 <img src="./img/icons8-search-100 (1).png" alt="Search icon">
