@@ -11,12 +11,18 @@ addEventListener("DOMContentLoaded", (event) => {loadPage()});
 async function loadPage() {
 
   const expireTime = localStorage.getItem("expireTime");
-  if (expireTime < new Date().getTime() / 1000) {
+  const token = localStorage.getItem("token");
+
+  if (expireTime < new Date().getTime() / 1000 || token === null || token === "null") {
     console.log("the token expired so it should be getting regenerated");
     await generateToken();
     await loadPage();
     return;
   }
+
+  //if (localStorage.getItem("uuid") !== null){
+  //  document.getElementById("g-id-signin").style.display = "none"
+  //}
 
   const urlParams = new URLSearchParams(window.location.search);
   let searchValue = urlParams.get("search");
@@ -25,7 +31,6 @@ async function loadPage() {
   document.getElementById("loadingText").innerHTML = searchValue;
   let result;
 
-  const token = localStorage.getItem("token");
 
   await fetch(`${url}/api/load/bestSongs`, {
     method: "POST",
@@ -41,8 +46,6 @@ async function loadPage() {
     .then((data) => (result = data))
     .catch((error) => console.error(error));
   result = JSON.parse(result);
-  
-  
   
   if (catchExpiredTokenError(result) === true) {
     generateToken();
@@ -129,11 +132,8 @@ function closePopup() {
 }
 
 async function confirmVote() {
-  if (localStorage.getItem("uuid") == null){
-    noUUIDPopup();
-    return;
-  }
-  return
+  
+  
   if (expireTime < new Date().getTime() / 1000) {
     generateToken();
   }
@@ -152,7 +152,7 @@ async function confirmVote() {
 }
 
 async function voteOnArtsist(searchTerm, token) {
-  const respone = await fetch(`${url}/api/post/vote/similarity`, {
+  const response = await fetch(`${url}/api/post/vote/similarity`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -161,15 +161,20 @@ async function voteOnArtsist(searchTerm, token) {
       token: token,
       artistName: artistName,
       votedArtist: searchTerm,
+      uuid: localStorage.getItem("uuid"),
     }),
   });
+  if (response.status === 400) {
+    let result = await response.json()
+    noTokenPopup(result)
+  }
 }
 
 async function voteOnSong(searchTerm, token) {
   let result = null;
 
   try {
-    const response = await fetch(`${url}/api/post/vote`, {
+    let response = await fetch(`${url}/api/post/vote`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -178,11 +183,13 @@ async function voteOnSong(searchTerm, token) {
         songName: `${searchTerm}`,
         artistName: artistName,
         token: token,
+        uuid: localStorage.getItem("uuid"),
       }),
     });
 
-    if (!response.ok) {
-      document.getElementById("errorBox").style.visibility = "visible";
+    if (response.status === 400) {
+      let result = await response.json()
+      noTokenPopup(result)
     }
 
     result = await response.json();

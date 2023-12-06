@@ -5,7 +5,8 @@
     right: 0;
     margin: auto;
     width: 30vw;
-    height: 150px;
+    height: auto;
+    padding: 10px 0;
     background-color: #181f2b;
     display: flex;
     flex-direction: column;
@@ -16,6 +17,7 @@
     outline-style: solid;
     box-shadow: 4px 4px 2.5px;
     white-space: normal;
+    
   }
 
 .popupBox.show-error{
