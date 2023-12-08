@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="css/searchedArtistHeader.css">
     <link rel="stylesheet" href="css/popup.css">
     <link rel="stylesheet" href="css/googleSigninButton.css">
+    <link rel="icon" href="img/iconNoBackGround.png" type="image/png">
     <link rel="stylesheet" href="css/errorBox.css">
     <script src="./scripts/errorPopups.js"></script>
     <script src="./scripts/script.js"></script>
@@ -152,7 +153,7 @@
                     </button>
                 </div>
 
-                <form class="searchboxVote" action="">
+                <form class="searchboxVote" onsubmit="event.preventDefault(); confirmVote()">
                     
                     <input type="text" placeholder="Song Name" name="q" id="searchboxVote" autocomplete="off">
                 </form>

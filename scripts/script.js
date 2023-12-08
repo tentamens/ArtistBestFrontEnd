@@ -9,7 +9,6 @@ addEventListener("DOMContentLoaded", (event) => {loadPage()});
 
 
 async function loadPage() {
-
   const expireTime = localStorage.getItem("expireTime");
   const token = localStorage.getItem("token");
 
@@ -20,9 +19,9 @@ async function loadPage() {
     return;
   }
 
-  //if (localStorage.getItem("uuid") !== null){
-  //  document.getElementById("g-id-signin").style.display = "none"
-  //}
+  if (localStorage.getItem("uuid") !== null){
+    document.getElementById("g-id-signin").style.display = "none"
+  }
 
   const urlParams = new URLSearchParams(window.location.search);
   let searchValue = urlParams.get("search");
@@ -168,6 +167,8 @@ async function voteOnArtsist(searchTerm, token) {
     let result = await response.json()
     noTokenPopup(result)
   }
+  result = await response.json();
+  checkVoteReturnStatus(result["artistName"], response.status, result)
 }
 
 async function voteOnSong(searchTerm, token) {
@@ -193,6 +194,8 @@ async function voteOnSong(searchTerm, token) {
     }
 
     result = await response.json();
+
+    checkVoteReturnStatus(result["songName"], response.status, result)
 
     if (catchExpiredTokenError(result) === true) {
       return;
@@ -225,6 +228,20 @@ function changeVoteState() {
   document.getElementById("h3font").innerHTML = "Vote on their Best Songs";
   return;
 }
+
+
+function checkVoteReturnStatus(response, returnStatus, exitCode) {
+  if (returnStatus === 200){
+      successfullVote(response)
+  }
+  if (returnStatus === 401){
+    fourOOneError(exitCode["exitCode"])
+  }
+  if (returnStatus === 410){
+    noMoreVotes()
+  }
+}
+
 
 async function search() {
   if (expireTime < new Date().getTime() / 1000) {
@@ -259,3 +276,5 @@ async function search() {
   history.pushState(null, "", "?search=" + encodeURIComponent(searchQuery));
   loadPage();
 }
+
+

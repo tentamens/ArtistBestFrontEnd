@@ -26,3 +26,43 @@ function noTokenPopup(content) {
       }, 10000);
     
 }
+
+function successfullVote(songName){
+    const errorBox = document.querySelector('.popupBox');
+    errorBox.classList.remove('show-error', 'hide-error');
+    void errorBox.offsetWidth;
+    document.querySelector('.popUpBoxHeader').innerHTML = "Yay! <br>Your Vote was successfull 🙌"
+    document.querySelector('.popUpBoxMain').innerHTML = `This was the Song voted on: ${songName}<br>
+    If that is wrong please report it in the discord`
+    errorBox.classList.add('show-error');
+    setTimeout(function() {
+        errorBox.classList.add('hide-error');
+      }, 3500);
+}
+
+function fourOOneError(exitCode){
+    const errorBox = document.querySelector('.popupBox');
+    errorBox.classList.remove('show-error', 'hide-error');
+    void errorBox.offsetWidth;
+    document.querySelector('.popUpBoxHeader').innerHTML = "Oh no! <br>Looks Something went wrong😟"
+    document.querySelector('.popUpBoxMain').innerHTML = `Looks like there was an error with your login<br>
+        if this continues please contact support in discord<br>
+        ExitCode:${exitCode}`
+    errorBox.classList.add('show-error');
+    setTimeout(function() {
+        errorBox.classList.add('hide-error');
+      }, 5000);
+}
+
+function noMoreVotes(){
+    const errorBox = document.querySelector('.popupBox');
+    errorBox.classList.remove('show-error', 'hide-error');
+    void errorBox.offsetWidth;
+    document.querySelector('.popUpBoxHeader').innerHTML = "Oh no! <br>You ran out of votes😟"
+    document.querySelector('.popUpBoxMain').innerHTML = `No worries tho!<br>
+        come back tomorrow and get another vote for this artist`
+    errorBox.classList.add('show-error');
+    setTimeout(function() {
+        errorBox.classList.add('hide-error');
+      }, 4000);
+}
