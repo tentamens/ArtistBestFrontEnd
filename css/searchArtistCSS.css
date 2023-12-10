@@ -96,6 +96,7 @@ body {
     right: 0;
     bottom: 0px;
     position: fixed;
+    cursor: pointer; /* Add cursor style for better UX */
 }
 
 .header-sm img {
@@ -232,11 +233,11 @@ body {
 }
 
 
-.songBox button img {
+.songBox a img {
     width: 50px;
 }
 
-.songBox button {
+.songBox a {
     border: 0;
     border-radius: 50%;
     background: transparent;

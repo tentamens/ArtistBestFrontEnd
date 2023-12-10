@@ -3,12 +3,14 @@
 
 }
 
-#footerButtons button {
+#footerButtons button, a {
     margin: 30px 25px;
-
 }
 
+
+
 #playlistButton {
+    text-decoration: none;
     width: calc(15px + 24vw);
     height: calc(70px + 2vw);
     border: none;

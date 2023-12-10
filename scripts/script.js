@@ -1,8 +1,9 @@
-const url = "http://localhost:8000";
+const url = "https://app.artistsbest.io:6969";
 
 var artistName = null;
 var voteState = "Song";
 var expireTime = null;
+var reloadCount = 0;
 
 addEventListener("DOMContentLoaded", (event) => {loadPage()});
 
@@ -12,8 +13,13 @@ async function loadPage() {
   const expireTime = localStorage.getItem("expireTime");
   const token = localStorage.getItem("token");
 
+  if (reloadCount >2){
+    somethingWentWrongOnOurEnd(600);
+    return
+  };
+
   if (expireTime < new Date().getTime() / 1000 || token === null || token === "null") {
-    console.log("the token expired so it should be getting regenerated");
+    reloadCount += 1
     await generateToken();
     await loadPage();
     return;
@@ -44,6 +50,12 @@ async function loadPage() {
     .then((response) => response.json())
     .then((data) => (result = data))
     .catch((error) => console.error(error));
+
+  if (result == undefined){
+    somethingWentWrongOnOurEnd(888);
+    return;
+  }
+
   result = JSON.parse(result);
   
   if (catchExpiredTokenError(result) === true) {
@@ -61,9 +73,7 @@ async function loadPage() {
 
     (function () {
       var output = result["songs"][i][2];
-      button.onclick = function () {
-        window.location.href = output;
-      };
+      button.href = output
     })();
   }
 
@@ -74,9 +84,7 @@ async function loadPage() {
 
   var button = document.getElementById("playlistButton");
   (function () {
-    button.onclick = function () {
-      window.location.href = `https://open.spotify.com/playlist/${result["playlist"]}`;
-    };
+    button.href = `https://open.spotify.com/playlist/${result["playlist"]}`
   })();
 
   updateSimiliarArtists(result["similartyVotes"]);
@@ -93,9 +101,7 @@ function updateSimiliarArtists(similartyVotes) {
 
     (function () {
       var output = similartyVotes[i][1];
-      button.onclick = function () {
-        window.location.href = output;
-      };
+      button.href = output
     })();
   }
 
@@ -235,6 +241,10 @@ function checkVoteReturnStatus(response, returnStatus, exitCode) {
       successfullVote(response)
   }
   if (returnStatus === 401){
+    if (exitCode["exitCode"] === 130){
+      searchNotFound(130)
+      return
+    }
     fourOOneError(exitCode["exitCode"])
   }
   if (returnStatus === 410){

@@ -2,11 +2,11 @@ const searchBar = document.getElementById("searchBar");
 let searchButton = document.getElementById("searchButton");
 var searchedUpArtist = null;
 
-let url = "http://localhost:8000";
+let url = "https://app.artistsbest.io:6969";
 
 var token = null;
 
-getToken();
+window.onload = getToken();
 
 async function getToken() {
   const Theurl = `${url}/api/get/token`;
