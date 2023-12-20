@@ -2,7 +2,7 @@ const searchBar = document.getElementById("searchBar");
 let searchButton = document.getElementById("searchButton");
 var searchedUpArtist = null;
 
-let url = "https://app.artistsbest.io:6969";
+let url = "http://localhost:6969";
 
 var token = null;
 
@@ -32,14 +32,14 @@ async function search() {
   const expireTime = localStorage.getItem('expireTime');
   if (expireTime < new Date().getTime() / 1000) {
     console.log("the token expired so it should be getting regenerated")
-    await generateToken();
+    await getToken();
     await search()
-    return
+    return;
   };
   
 
 
-  await fetch(`${url}/api/load/searchArtist`, {
+  let response = await fetch(`${url}/api/load/searchArtist`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -55,6 +55,16 @@ async function search() {
 
   let searchQuery = result;
 
-  window.location.href =
-    "searchedArtist.html?search=" + encodeURIComponent(searchQuery);
+  if (response.status == 401) {
+    await getToken();
+    await search()
+    return;
+  }
+
+  
+
+  var location = getRedirect(searchQuery)
+
+  window.location.href = location
+
 }

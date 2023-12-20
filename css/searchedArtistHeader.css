@@ -1,6 +1,6 @@
 
 #searchBarTop {
-    margin-top: 20px;
+    margin-top: 50px;
     align-self: center;
     display: flex;
     align-items: center;
@@ -23,16 +23,15 @@
 
 
 #searchBoxTop {
-
     width: 100%;
     background: #45537d;
-    max-width: 40vw;
+    max-width: calc(15vw + 300px);
     display: flex;
     align-items: center;
     border-radius: 154px;
     padding: 10px 1vw;
     min-width: 0;
-    max-height: 9vw;
+
 }
 
 
@@ -45,5 +44,5 @@
     font-family: sans;
     color: #ffff;
     min-width: 0;
-    max-height: 5vw;
+
 }

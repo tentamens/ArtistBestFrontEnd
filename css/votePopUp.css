@@ -4,14 +4,14 @@
 }
 
 #footerButtons button, a {
-    margin: 30px 25px;
+    margin: 30px 15px;
 }
 
 
-
 #playlistButton {
+    overflow: hidden;
     text-decoration: none;
-    width: calc(15px + 24vw);
+    width: calc(26vw + 150px);
     height: calc(70px + 2vw);
     border: none;
     background-color: rgb(20, 26, 37);
@@ -21,6 +21,7 @@
     cursor: pointer;
     display: flex;
     justify-content: center;
+    margin-top: 60px;
 }
 
 #voteButton {
@@ -28,7 +29,7 @@
 }
 
 #voteButton {
-    width: calc(15px + 24vw);
+    width: calc(30px + 24vw);
     height: calc(70px + 2vw);
     border: none;
     margin-top: 40px;
@@ -41,22 +42,29 @@
 }
 
 
-h4 {
-    font-size: 5vw;
+h3 {
+    font-size: 3.3vw;
+    
     font-family: sans, sans-serif;
     text-align: center;
     color: white;
     align-self: center;
+    text-shadow: 5px 5px 2px #000000;
 }
 
-h3 {
-    font-size: 3.5vw;
-    font-family: sans, sans-serif;
-
+h4 {
+    position: absolute;
+    font-size: calc(3.8vw + 20px);
+    font-family: sans, sans-serif; /* Specify the fallback font-family after the preferred font */
+    max-width: 100%;
+    max-height: 100%; /* Use max-height instead of a duplicate max-width */
     color: white;
     margin-left: auto;
-}
-
+    margin-right: auto; /* Center the text horizontally */
+    text-align: center;
+    text-shadow: 5px 5px 2px #000000;
+  }
+  
 
 #searchIcon {
     width: calc(15px + 2.5vw);
@@ -66,7 +74,7 @@ h3 {
 
 #votePopup {
     visibility: hidden;
-    position: absolute;
+    position: fixed; /* Fixed position for the overlay */
     width: 80%;
     height: 80%;
     background-color: rgba(0, 0, 0, 0.918);
@@ -77,9 +85,16 @@ h3 {
     display: flex;
     flex-direction: column;
     align-items: center;
-    position: fixed;
-
+    /* Remove duplicate 'position' property */
 }
+
+@media only screen and (max-width: 600px) {
+    #votePopup {
+        height: 60%;
+        width: 80%; /* Adjust width for smaller screens */
+    }
+}
+
 
 
 .searchbarVote {
@@ -98,9 +113,8 @@ h3 {
     display: flex;
     align-items: center;
     border-radius: 154px;
-    border-top-left-radius: 0px;
-    border-bottom-left-radius: 0px;
-    padding: 10px 20px;
+    padding-top: 10px;
+    padding-bottom: 10px;
     margin-top: 50px;
 
     min-width: 0;
@@ -113,11 +127,12 @@ h3 {
     flex: 1;
     border: 0;
     outline: none;
-    font-size: 6vw;
+    font-size: calc(5vw + 5px);
     font-family: sans;
     color: #ffff;
     min-width: 0;
     max-height: 8vw;
+    margin-left: 20px;
 }
 
 ::placeholder {
@@ -126,19 +141,20 @@ h3 {
 
 
 #h3font {
-    font-size: 5vw;
+    font-size: calc(20px + 3vw);
     margin-top: 50px;
     font-family: sans, sans-serif;
     margin-left: 20px;
+    text-align: center;
     color: white;
 }
 
 
 .confirmButton {
-    margin-top: 130px;
+    margin-top: 50px;
     border: none;
-    width: 25vw;
-    height: 10vw;
+    width: calc(20vw + 150px);
+    height: calc(5vw + 75px);
     border-radius: 20px;
     background-color: rgb(20, 26, 37);
     box-shadow: 5px 5px 2px rgba(0, 0, 0, 0.753);
@@ -148,7 +164,7 @@ h3 {
 
 .confirmButton h5 {
     color: white;
-    font-size: 5vw;
+    font-size: calc(20px + 5vw);
     text-shadow: 5px 5px 2px rgba(0, 0, 0, 0.753);
 }
 
@@ -165,12 +181,14 @@ h3 {
 }
 
 #closePopUpButton {
+    all: unset;
     position: fixed;
     top: 0;
     width: 100%;
     height: 100%;
     cursor: pointer;
-    background-color: transparent;
+    background-color: rgba(0, 0, 0, 0.534);
+    
     visibility: hidden;
 }
 
@@ -178,7 +196,7 @@ h3 {
     
     margin-top: 50px;
     height: calc(6vw + 20px);
-    width: 7vw;
+    width: auto;
     background-color: white;
     display: flex;
     align-items: center;
@@ -203,12 +221,12 @@ h3 {
 
 .containerVote {
     display: flex;
+    flex-direction: column;
     align-items: center;
-    justify-content: end;
 }
 
 #voteButtonChangerText {
-    font-size: 1.1vw;
+    font-size: calc(2vw + 2px);
     text-align: center;
     color: rgb(230, 230, 230);
     text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.753);

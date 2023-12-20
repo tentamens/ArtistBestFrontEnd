@@ -1,10 +1,10 @@
 .popupBox {
     position: fixed;
-    top: -200px;
+    top: -210px;
     left: 0;
     right: 0;
     margin: auto;
-    width: 30vw;
+    width: 40%;
     height: auto;
     padding: 10px 0;
     background-color: #181f2b;
@@ -17,7 +17,7 @@
     outline-style: solid;
     box-shadow: 4px 4px 2.5px;
     white-space: normal;
-    
+    max-width: 500px;
   }
 
 .popupBox.show-error{
@@ -26,14 +26,14 @@
 }
 
 .popupBox.hide-error{
-  top: -200px;
+  top: -210px;
   transition: top 1s ease 0s;
 }
 
 .popUpBoxHeader {
     text-align: center;
     color: rgb(230, 230, 230);
-    font-size: 1.3vw;
+    font-size: auto;
     font-family: sans, sans-serif;
     margin-top: 10px;
 }
@@ -41,6 +41,19 @@
   text-align: center;
   color: rgb(230, 230, 230);
   margin-top: 25px;
-  font-size: 1.1vw;
+  font-size: auto;
   font-family: sans, sans-serif;
+}
+
+#closeErrorPopUp {
+  all: unset;
+  position: absolute;
+  cursor: pointer;
+  right: 0;
+  margin-right: 15px;
+}
+
+#closeErrorPopUp img {
+  width: 20px;
+  
 }

@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Artist Best</title>
     <link rel="stylesheet" href="css/reset.css">
     <link rel="stylesheet" href="css/searchArtistCSS.css">
@@ -17,7 +17,7 @@
     <script src="./scripts/script.js"></script>
     <script src="https://accounts.google.com/gsi/client" async defer></script>
     <script src="./scripts/googleSignIn.js"></script>
-
+    <script src="./scripts/handleURL.js"></script>
 </head>
 
 
@@ -26,22 +26,28 @@
 
 
     <div id="errorBox">
+
         <p class="errorFontHeader">An error has occurred:</p>
         <div class="solid"></div>
         <p id="errorFont">Token expired please refresh your page </p>
         <p id="IfThisContiues">if this continues make a support ticket in discord</p>
     </div>
+
     <header class="header-main">
         <h2 class="main-text">Artists Best🎵</h2>
     </header>
 
-    <div id="searchBarTop">
+    <div id=googleSignInButtonHolder>
         <div id="googleSignInButton">
             <div id="g-id-signin" data-type="standard"></div>
         </div>
+    </div>
+
+    <div id="searchBarTop">
+
         <form id="searchBoxTop" onsubmit="event.preventDefault(); search()">
             
-            <input type="text" placeholder="Search" id="searchBoxTopTXT" autocomplete="off">
+            <input type="text" placeholder="Search Another Artist" id="searchBoxTopTXT" autocomplete="off">
             <button type="submit"  id="searchButton">
                 <img src="./img/icons8-search-100 (1).png" alt="Search icon">
             </button>
@@ -53,7 +59,11 @@
         <img src="img/icons8-discord-logo-96.png" alt="discord logo">
     </a>
     <main class="bodyMain">
-        <h1 id="loadingText">Loading</h1>
+        <h1 id="loadingText">Loading Artists Best songs</h1>
+        <a href="" id="playlistButton">
+            <h4>Playlist</h4>
+            <img src="./img/link.png" alt="Search icon" id="searchIcon">
+        </a>
         <div class="box">
             
             <div class="songBox">
@@ -115,14 +125,13 @@
         <div>
             <div id="footerButtons">
                 <button onclick="votePop()" type="button" id="voteButton">
-                    <h4>Vote</h4>
+                    <h3>Vote on Songs</h3>
                 </button>
 
-                <a href="" id="playlistButton">
-                    <h3>Playlist</h3>
-                    <img src="./img/link.png" alt="Search icon" id="searchIcon">
-                </a>
 
+                <button onclick="votePop()" type="button" id="voteButton">
+                    <h3>Vote on Artist</h3>
+                </button>
             </div>
 
             <div style="display:flex;justify-content:center;align-items:flex-end;">
@@ -147,23 +156,15 @@
 
         <div class="searchbarVote">
             <div class="containerVote">
-                <div id="voteChangerVote">
-                    <button id="voteChangerButton" onclick="changeVoteState()">
-                        <p id="voteButtonChangerText">Similar Artist</p>
-                    </button>
-                </div>
-
                 <form class="searchboxVote" onsubmit="event.preventDefault(); confirmVote()">
                     <input type="text" placeholder="Song Name" id="searchboxVote" autocomplete="off">
                 </form>
+                
+                <button type="submit" onclick="confirmVote()" class="confirmButton">
+                    <h5>Cast Vote</h5>
+                </button>
             </div>
         </div>
-        <button type="submit" onclick="confirmVote()" class="confirmButton">
-            <h5>Cast Vote</h5>
-        </button>
-
-
-
 
     </div>
 
@@ -205,6 +206,9 @@
     
     
     <div class="popupBox">
+        <button id="closeErrorPopUp" onclick="closeErrorPopup()">
+            <img src="/img/x-button.png">
+        </button>
         <p class="popUpBoxHeader"> Oh no! <br>Looks like Login in failed😟</p>
         <p class="popUpBoxMain">Sign in if you have not already.<br>
             If this continues please contact support in the discord</p>

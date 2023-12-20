@@ -1,4 +1,6 @@
-const url = "https://app.artistsbest.io:6969";
+const url = "http://localhost:6969";
+//http://localhost:6969
+//https://app.artistsbest.io/
 
 var artistName = null;
 var voteState = "Song";
@@ -25,12 +27,12 @@ async function loadPage() {
     return;
   }
 
-  if (localStorage.getItem("uuid") !== null){
-    document.getElementById("g-id-signin").style.display = "none"
-  }
+  //if (localStorage.getItem("uuid") !== null){
+  //  document.getElementById("g-id-signin").style.display = "none"
+  //}
 
   const urlParams = new URLSearchParams(window.location.search);
-  let searchValue = urlParams.get("search");
+  let searchValue = GetSearchQuery()
   artistName = searchValue;
   console.log(searchValue);
   document.getElementById("loadingText").innerHTML = searchValue;
@@ -61,6 +63,12 @@ async function loadPage() {
   if (catchExpiredTokenError(result) === true) {
     generateToken();
     return;
+  }
+
+  if (result.status === 400){
+    console.log("hello world")
+    artistNameNotFound();
+    return
   }
 
   var songsVotedOn = 0;
@@ -267,7 +275,7 @@ async function search() {
 
   let result = null;
 
-  await fetch(`${url}/api/load/searchArtist`, {
+  var response = await fetch(`${url}/api/load/searchArtist`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -280,10 +288,18 @@ async function search() {
     .then((response) => response.json())
     .then((data) => (result = data))
     .catch((error) => console.error(error));
-  console.log(result)
+  
+  if (response.status === 401){
+    generateToken()
+    await search()
+    return
+  } 
+
   let searchQuery = result;
 
-  history.pushState(null, "", "?search=" + encodeURIComponent(searchQuery));
+  var location = getRedirect(searchQuery)
+
+  window.location.href = location
   loadPage();
 }
 

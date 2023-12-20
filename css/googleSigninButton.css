@@ -1,5 +1,31 @@
 #googleSignInButton {
+    max-width: 250px;
+    margin-right: 5px;
+    margin-top: 5px;
+}
+
+#googleSignInButtonHolder {
+    right: 0px;
     position: absolute;
-    right: 0;
-    margin-right: 10px;
+}
+
+#GoogleSignInDone {
+    width: 140px;
+    height: 50px;
+    background-color: rgb(54, 55, 56);
+    position: absolute;
+    margin-top: 5px;
+    position: absolute;
+    right: 0px;
+    margin-right: 20px;
+    visibility: visible;
+    display: flex;
+    align-items: center;
+    border-radius: 15px;
+}
+
+#GoogleSignInDone p {
+    text-align: center;
+    font-family: sans;
+    color: white;
 }

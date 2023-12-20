@@ -8,7 +8,7 @@ function noUUIDPopup() {
     errorBox.classList.add('show-error');
     setTimeout(function() {
         errorBox.classList.add('hide-error');
-      }, 3000);
+      }, 10000);
     
 }
 
@@ -38,7 +38,7 @@ function successfullVote(songName){
     errorBox.classList.add('show-error');
     setTimeout(function() {
         errorBox.classList.add('hide-error');
-      }, 3500);
+      }, 4500);
 }
 
 function fourOOneError(exitCode){
@@ -53,7 +53,7 @@ function fourOOneError(exitCode){
     errorBox.classList.add('show-error');
     setTimeout(function() {
         errorBox.classList.add('hide-error');
-      }, 5000);
+      }, 10000);
 }
 
 function noMoreVotes(){
@@ -66,7 +66,7 @@ function noMoreVotes(){
     errorBox.classList.add('show-error');
     setTimeout(function() {
         errorBox.classList.add('hide-error');
-      }, 4000);
+      }, 5000);
 }
 
 function searchNotFound(exitCode){
@@ -81,7 +81,7 @@ function searchNotFound(exitCode){
     errorBox.classList.add('show-error');
     setTimeout(function() {
         errorBox.classList.add('hide-error');
-      }, 7000);
+      }, 10000);
 }
 
 function somethingWentWrongOnOurEnd(exitCode){
@@ -96,5 +96,25 @@ function somethingWentWrongOnOurEnd(exitCode){
     errorBox.classList.add('show-error');
     setTimeout(function() {
         errorBox.classList.add('hide-error');
-      }, 4000);
+      }, 10000);
+}
+
+function closeErrorPopup(){
+    const errorBox = document.querySelector('.popupBox');
+    errorBox.classList.remove('show-error', 'hide-error');
+    errorBox.classList.add('hide-error');
+}
+
+function artistNameNotFound(){
+    const errorBox = document.querySelector('.popupBox');
+    errorBox.classList.remove('show-error', 'hide-error');
+    void errorBox.offsetWidth;
+    document.querySelector('.popUpBoxHeader').innerHTML = "Oh no! <br>We couldn't find that artist😟"
+    document.querySelector('.popUpBoxMain').innerHTML = `Make sure that artist is on spotify<br>
+        if it is and you think something went from please report it in discord!`
+    errorBox.classList.add('show-error');
+    setTimeout(function() {
+        errorBox.classList.add('hide-error');
+      }, 10000);
+
 }
