@@ -24,13 +24,13 @@
     margin-top: 60px;
 }
 
-#voteButton {
+.voteButton {
     background-color: rgb(20, 26, 37);
 }
 
-#voteButton {
-    width: calc(30px + 24vw);
-    height: calc(70px + 2vw);
+.voteButton {
+    width: calc(60px + 24vw);
+    height: calc(80px + 2vw);
     border: none;
     margin-top: 40px;
     border-radius: 10px;
@@ -43,7 +43,7 @@
 
 
 h3 {
-    font-size: 3.3vw;
+    font-size: calc(20px + 2.4vw);
     
     font-family: sans, sans-serif;
     text-align: center;
@@ -73,7 +73,6 @@ h4 {
 
 
 #votePopup {
-    visibility: hidden;
     position: fixed; /* Fixed position for the overlay */
     width: 80%;
     height: 80%;
@@ -107,7 +106,7 @@ h4 {
 .searchboxVote {
     z-index: 10;
     width: 100%;
-    max-width: 50vw;
+    max-width: calc(50px + 48vw);
     background: #45537d;
 
     display: flex;
@@ -115,10 +114,10 @@ h4 {
     border-radius: 154px;
     padding-top: 10px;
     padding-bottom: 10px;
-    margin-top: 50px;
+    margin-top: 30px;
 
     min-width: 0;
-    max-height: 6vw;
+    max-height: calc(20px + 4vw);
 }
 
 
@@ -127,12 +126,12 @@ h4 {
     flex: 1;
     border: 0;
     outline: none;
-    font-size: calc(5vw + 5px);
+    font-size: calc(13px + 4vw);
     font-family: sans;
     color: #ffff;
     min-width: 0;
     max-height: 8vw;
-    margin-left: 20px;
+    margin-left: 10px;
 }
 
 ::placeholder {
@@ -233,4 +232,28 @@ h4 {
     font-family: sans, sans-serif;
 }
 
+#voteArtistPop{
+    visibility: hidden;
+}
 
+#voteSongPop {
+    visibility: hidden;
+}
+
+.NotSignedInFont {
+    position: absolute;
+    backdrop-filter: none;
+    font-family: sans, sans-serif;
+    font-size: calc(20px + 2vw);
+    color: rgb(255, 255, 255);
+    top: 0px;
+    margin-top: 2px;
+    text-align: center;
+    top: 30%;
+    z-index: 20;
+    display: none;
+}
+
+#blured {
+    filter: blur(4);
+}

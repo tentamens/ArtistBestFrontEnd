@@ -1,6 +1,6 @@
 
 #searchBarTop {
-    margin-top: 50px;
+    
     align-self: center;
     display: flex;
     align-items: center;
@@ -31,7 +31,6 @@
     border-radius: 154px;
     padding: 10px 1vw;
     min-width: 0;
-
 }
 
 
@@ -46,3 +45,17 @@
     min-width: 0;
 
 }
+
+.Spotify-Icon {
+    width: calc(2.5vw + 70px);
+    position: absolute;
+    height: auto;
+    cursor: pointer;
+    right: 0;
+    bottom: 0;
+    margin-right: calc(calc(2.5vw + 70px) / 3);
+    margin-bottom: calc(calc(2vw + 70px) / 3);
+}
+
+
+

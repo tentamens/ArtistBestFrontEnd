@@ -1,4 +1,4 @@
-const url = "http://localhost:6969";
+const url = "https://app.artistsbest.io/";
 //http://localhost:6969
 //https://app.artistsbest.io/
 
@@ -6,6 +6,8 @@ var artistName = null;
 var voteState = "Song";
 var expireTime = null;
 var reloadCount = 0;
+var IsSignedIn = false
+
 
 addEventListener("DOMContentLoaded", (event) => {loadPage()});
 
@@ -29,6 +31,7 @@ async function loadPage() {
 
   //if (localStorage.getItem("uuid") !== null){
   //  document.getElementById("g-id-signin").style.display = "none"
+  //  IsSignedIn = true;
   //}
 
   const urlParams = new URLSearchParams(window.location.search);
@@ -135,13 +138,33 @@ async function generateToken() {
 }
 
 function votePop() {
+  
+  document.getElementsByClassName("blured")[0].style.filter = "blur(0px)";
+  document.getElementsByClassName("NotSignedInFont")[0].style.display = "none";
+  if (IsSignedIn === false){
+    document.getElementsByClassName("blured")[0].style.filter = "blur(4px)";
+    document.getElementsByClassName("NotSignedInFont")[0].style.display = "block";
+  }
+
   document.getElementById("closePopUpButton").style.visibility = "visible";
-  document.getElementById("votePopup").style.visibility = "visible";
+  document.getElementById("voteSongPop").style.visibility = "visible"
 }
 
 function closePopup() {
   document.getElementById("closePopUpButton").style.visibility = "hidden";
-  document.getElementById("votePopup").style.visibility = "hidden";
+  document.getElementById("voteArtistPop").style.visibility = "hidden";
+  document.getElementById("voteSongPop").style.visibility = "hidden"
+}
+
+function voteArtistPop() {
+  document.getElementsByClassName("blured")[1].style.filter = "blur(0px)";
+  document.getElementsByClassName("NotSignedInFont")[1].style.display = "none";
+  if (IsSignedIn === false){
+    document.getElementsByClassName("blured")[1].style.filter = "blur(4px)";
+    document.getElementsByClassName("NotSignedInFont")[1].style.display = "block";
+  }
+  document.getElementById("closePopUpButton").style.visibility = "visible";
+  document.getElementById("voteArtistPop").style.visibility = "visible";
 }
 
 async function confirmVote() {
@@ -156,15 +179,23 @@ async function confirmVote() {
 
   if (searchTerm === "") return;
 
-  if (voteState === "Artist") {
-    await voteOnArtsist(searchTerm, token);
-    return;
-  }
 
   await voteOnSong(searchTerm, token);
 }
 
-async function voteOnArtsist(searchTerm, token) {
+async function confirmArtistVote() {
+
+  const searchTerm = document.getElementById("searchboxVote").value;
+  const token = localStorage.getItem("token");
+
+  if (searchTerm === "") return;
+
+  if (expireTime < new Date().getTime() / 1000) {
+    await generateToken();
+    confirmArtistVote()
+    return
+  }
+
   const response = await fetch(`${url}/api/post/vote/similarity`, {
     method: "POST",
     headers: {

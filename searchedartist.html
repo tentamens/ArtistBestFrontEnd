@@ -22,8 +22,6 @@
 
 
 <body>
-    
-
 
     <div id="errorBox">
 
@@ -34,8 +32,12 @@
     </div>
 
     <header class="header-main">
-        <h2 class="main-text">Artists Best🎵</h2>
+        <h5 class="main-text">Artists Best🎵</h5>
     </header>
+
+    <a href="https://spotify.com/">
+        <img src="./img/Spotify_Logo_RGB_White.png", alt="Spotify-Icon" class="Spotify-Icon">
+    </a>
 
     <div id=googleSignInButtonHolder>
         <div id="googleSignInButton">
@@ -124,12 +126,12 @@
 
         <div>
             <div id="footerButtons">
-                <button onclick="votePop()" type="button" id="voteButton">
+                <button onclick="votePop()" type="button" class="voteButton">
                     <h3>Vote on Songs</h3>
                 </button>
 
 
-                <button onclick="votePop()" type="button" id="voteButton">
+                <button onclick="voteArtistPop()" type="button" class="voteButton">
                     <h3>Vote on Artist</h3>
                 </button>
             </div>
@@ -146,28 +148,46 @@
     </main>
 
     <button type="button" id="closePopUpButton" onclick="closePopup()"></button>
-
-    <div id="votePopup">
-
-
-        <h3 id="h3font">Vote on their best songs</h3>
-
-
-
-        <div class="searchbarVote">
-            <div class="containerVote">
-                <form class="searchboxVote" onsubmit="event.preventDefault(); confirmVote()">
-                    <input type="text" placeholder="Song Name" id="searchboxVote" autocomplete="off">
-                </form>
-                
-                <button type="submit" onclick="confirmVote()" class="confirmButton">
-                    <h5>Cast Vote</h5>
-                </button>
+    <div id="voteSongPop">
+        <div id="votePopup">
+            <p class="NotSignedInFont">Notice! You need to be signed in to vote!</p>
+            <div class="blured">
+                <h2 id="h3font">Vote on their best songs</h2>
+                <div class="searchbarVote">
+                    <div class="containerVote">
+                        <form class="searchboxVote" onsubmit="event.preventDefault(); confirmVote()">
+                            <input type="text" placeholder="Song Name" id="searchboxVote" autocomplete="off">
+                        </form>
+                        
+                        <button type="submit" onclick="confirmVote()" class="confirmButton">
+                            <h5>Cast Vote</h5>
+                        </button>
+                    </div>
+                </div>
             </div>
         </div>
-
     </div>
 
+    <button type="button" id="closePopUpButton" onclick="closePopup()"></button>
+    <div id="voteArtistPop">
+        <div id="votePopup">
+            <p class="NotSignedInFont">Notice! You need to be signed in to vote!</p>
+            <div class="blured">
+                <h2 id="h3font">Vote on similar Artists</h2>
+                <div class="searchbarVote">
+                    <div class="containerVote">
+                        <form class="searchboxVote" onsubmit="event.preventDefault(); confirmArtistVote()">
+                            <input type="text" placeholder="Artist's Name" id="searchboxVote" autocomplete="off">
+                        </form>
+                        
+                        <button type="submit" onclick="confirmArtistVote()" class="confirmButton">
+                            <h5>Cast Vote</h5>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <div style="display:flex;justify-content:center;align-items:flex-end;">
 
